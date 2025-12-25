@@ -14,3 +14,7 @@ __pycache__/
 .vscode/
 
 *.log
+
+googledrive.json
+/firestore-backup
+/client_secret_448728695892-uehhb0f1sqi980uiqsahsrj90d6gnt3b.apps.googleusercontent.com.json

@@ -1,6 +1,6 @@
 [core]
     remote = gdrive
+
 ['remote "gdrive"']
-    url = gdrive://18i4-TeN2G7elVmkpuvVy6eIpYoFWV3C3
-    gdrive_use_service_account = true
-    gdrive_service_account_json_file_path = ../googledrive.json
+    url = gdrive://1xz6NgGNAUC4MSDaERZMe3EHAPMtD4pch
+    gdrive_use_service_account = false
