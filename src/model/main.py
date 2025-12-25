@@ -1,19 +1,23 @@
-from datapreprocessing import Preprocessing
+from dataspliting import TrainTestSplit  # whatever your filename is
 
-RAW_DATA_PATH = "/Users/siddharthaganguli/Desktop/irish/data/raw/Iris_Data.csv"
-PROCESSED_DATA_PATH = "/Users/siddharthaganguli/Desktop/irish/data/preprocessed_data"
+RAW_DATA_PATH = "/Users/siddharthaganguli/Desktop/irish/data/preprocessed_data/iris_preprocessed.csv"
+SPLIT_OUTPUT_PATH = "/Users/siddharthaganguli/Desktop/irish/data/split_data"
+TARGET_COLUMN = "species" 
 
 def main():
-    prep = Preprocessing(
+    splitter = TrainTestSplit(
         input_path=RAW_DATA_PATH,
-        output_path=PROCESSED_DATA_PATH
+        output_path=SPLIT_OUTPUT_PATH,
+        target_column=TARGET_COLUMN
     )
 
-    prep.load_data()
-    prep.encode_features()
-    output_file = prep.save_data()
+    splitter.load_data()
+    X_train, X_test, y_train, y_test = splitter.split()
+    paths = splitter.save_splits(X_train, X_test, y_train, y_test)
 
-    print(f"Preprocessing completed. Saved to: {output_file}")
+    print("Train/Test split completed. Saved files:")
+    for path in paths:
+        print(path)
 
 if __name__ == "__main__":
     main()
