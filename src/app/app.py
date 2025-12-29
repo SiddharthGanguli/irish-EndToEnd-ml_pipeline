@@ -2,8 +2,18 @@ from src.app.schema import InputFeatures, Output
 from fastapi import FastAPI, HTTPException
 import joblib
 import pandas as pd
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title="Iris Classification API")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],      # for local testing; later restrict to your frontend domain
+    allow_credentials=True,
+    allow_methods=["*"],      # allows POST, GET, OPTIONS
+    allow_headers=["*"],
+)
 
 FEATURES = [
     "sepal_length",
