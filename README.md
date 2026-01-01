@@ -53,6 +53,7 @@ This project focuses on building a **scalable ML pipeline** with an emphasis on 
 ---
 
 ## Project Structure
+```
 irish/
 ├── src/
 │ ├── app/ # FastAPI application
@@ -65,9 +66,7 @@ irish/
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
-
-
-
+```
 ---
 
 ## Installation
