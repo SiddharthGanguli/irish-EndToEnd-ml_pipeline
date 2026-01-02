@@ -6,6 +6,7 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const data = {
+    model_name: document.getElementById("model").value, // ✅ NEW
     sepal_length: parseFloat(document.getElementById("sepal_length").value),
     sepal_width: parseFloat(document.getElementById("sepal_width").value),
     petal_length: parseFloat(document.getElementById("petal_length").value),

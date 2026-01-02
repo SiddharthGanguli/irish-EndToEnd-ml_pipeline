@@ -1,17 +1,16 @@
-from src.app.schema import InputFeatures, Output
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
 import joblib
 import pandas as pd
-from fastapi.middleware.cors import CORSMiddleware
-
 
 app = FastAPI(title="Iris Classification API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],      # for local testing; later restrict to your frontend domain
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],      # allows POST, GET, OPTIONS
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
@@ -22,35 +21,46 @@ FEATURES = [
     "petal_width"
 ]
 
-MODEL_PATH = "src/app/irishmodel/model.pkl"
+MODEL_PATHS = {
+    "logistic": "src/app/irishmodel/logistic.pkl",
+    "decision_tree": "src/app/irishmodel/decision_tree.pkl"
+}
 
+models = {}
+
+class InputFeatures(BaseModel):
+    model_name: str
+    sepal_length: float
+    sepal_width: float
+    petal_length: float
+    petal_width: float
+
+class Output(BaseModel):
+    species: int = Field(
+        ...,
+        description="0 setosa, 1 versicolor, 2 virginica"
+    )
 
 @app.on_event("startup")
-def load_model():
-    global model
-    try:
-        model = joblib.load(MODEL_PATH)
-    except Exception as e:
-        raise RuntimeError(f"Failed to load model: {e}")
+def load_models():
+    for name, path in MODEL_PATHS.items():
+        models[name] = joblib.load(path)
 
 @app.get("/")
 def home():
     return {"app": "iris classification"}
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
-
 @app.post("/predict", response_model=Output)
 def predict(data: InputFeatures):
-    try:
-        # Create 1-row dataframe
-        input_df = pd.DataFrame([data.dict()])
-        input_df = input_df[FEATURES]
+    if data.model_name not in models:
+        raise HTTPException(status_code=400, detail="Invalid model selected")
 
-        prediction = model.predict(input_df)[0]
+    input_df = pd.DataFrame([{
+        "sepal_length": data.sepal_length,
+        "sepal_width": data.sepal_width,
+        "petal_length": data.petal_length,
+        "petal_width": data.petal_width,
+    }])
 
-        return {"species": int(prediction)}
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    prediction = models[data.model_name].predict(input_df)[0]
+    return {"species": int(prediction)}
