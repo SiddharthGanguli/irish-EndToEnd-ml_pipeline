@@ -3,7 +3,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import joblib
 import pandas as pd
-from schema import InputFeatures,Output
+from pydantic import BaseModel, Field
+
+class InputFeatures(BaseModel):
+    model_name: str  
+    sepal_length: float
+    sepal_width: float
+    petal_length: float
+    petal_width: float
+
+class Output(BaseModel):
+    species: int = Field(
+        ...,
+        description="0 for Iris-setosa, 1 for Iris-versicolor, 2 for Iris-virginica"
+    )
 
 app = FastAPI(title="Iris Classification API")
 
