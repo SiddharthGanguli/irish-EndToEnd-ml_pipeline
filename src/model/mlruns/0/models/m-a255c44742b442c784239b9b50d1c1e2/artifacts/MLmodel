@@ -1,0 +1,22 @@
+artifact_path: /Users/siddharthaganguli/Desktop/irish/src/model/mlruns/0/models/m-a255c44742b442c784239b9b50d1c1e2/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.14
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+mlflow_version: 3.8.0
+model_id: m-a255c44742b442c784239b9b50d1c1e2
+model_size_bytes: 1440
+model_uuid: m-a255c44742b442c784239b9b50d1c1e2
+prompts: null
+run_id: 3e56aa49339c4209a7117240d3ae1e22
+utc_time_created: '2026-01-02 19:27:09.478931'
