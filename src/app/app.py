@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import joblib
 import pandas as pd
+from schema import InputFeatures,Output
 
 app = FastAPI(title="Iris Classification API")
 
@@ -22,24 +23,11 @@ FEATURES = [
 ]
 
 MODEL_PATHS = {
-    "logistic": "src/app/irishmodel/logistic.pkl",
-    "decision_tree": "src/app/irishmodel/decision_tree.pkl"
+    "logistic": "/Users/siddharthaganguli/Desktop/irish/src/model/mlruns/0/models/m-a255c44742b442c784239b9b50d1c1e2/artifacts/model.pkl",
+    "decision_tree": "/Users/siddharthaganguli/Desktop/irish/src/model/mlruns/0/models/m-aa9048c735024b6f8768006894860189/artifacts/model.pkl"
 }
 
 models = {}
-
-class InputFeatures(BaseModel):
-    model_name: str
-    sepal_length: float
-    sepal_width: float
-    petal_length: float
-    petal_width: float
-
-class Output(BaseModel):
-    species: int = Field(
-        ...,
-        description="0 setosa, 1 versicolor, 2 virginica"
-    )
 
 @app.on_event("startup")
 def load_models():

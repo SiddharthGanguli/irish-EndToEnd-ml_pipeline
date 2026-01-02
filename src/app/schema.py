@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 
 class InputFeatures(BaseModel):
+    model_name: str  
     sepal_length: float
     sepal_width: float
     petal_length: float

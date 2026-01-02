@@ -13,6 +13,15 @@
     <p class="subtitle">Enter flower measurements</p>
 
     <form id="irisForm">
+
+      <div class="model-select">
+        <label for="model">Choose Model</label>
+        <select id="model" required>
+          <option value="logistic">Logistic Regression</option>
+          <option value="decision_tree">Decision Tree</option>
+        </select>
+      </div>
+
       <input type="number" step="any" placeholder="Sepal Length" id="sepal_length" required>
       <input type="number" step="any" placeholder="Sepal Width" id="sepal_width" required>
       <input type="number" step="any" placeholder="Petal Length" id="petal_length" required>

@@ -90,7 +90,28 @@ button:hover {
   display: none;
 }
 
-/* 🌐 Responsive tweaks */
+.model-select {
+  width: 100%;
+  text-align: left;
+}
+
+.model-select label {
+  font-size: 0.85rem;
+  color: #444;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.model-select select {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+
 @media (max-width: 480px) {
   .card {
     padding: 1.2rem;
