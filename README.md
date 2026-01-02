@@ -11,6 +11,9 @@ This repository demonstrates a complete **end-to-end machine learning workflow**
 
 The deployed API is accessible at: [Iris Classification API](https://irish-endtoend-ml-pipeline.onrender.com/)
 
+Here is the fully furnished app: [Irish Prediction App](https://irish-pred.netlify.app/)
+
+
 ---
 
 ## Table of Contents
@@ -50,6 +53,7 @@ This project focuses on building a **scalable ML pipeline** with an emphasis on 
 ---
 
 ## Project Structure
+```
 irish/
 ├── src/
 │ ├── app/ # FastAPI application
@@ -62,9 +66,7 @@ irish/
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
-
-
-
+```
 ---
 
 ## Installation
