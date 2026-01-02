@@ -36,8 +36,8 @@ FEATURES = [
 ]
 
 MODEL_PATHS = {
-    "logistic": "/Users/siddharthaganguli/Desktop/irish/src/model/mlruns/0/models/m-a255c44742b442c784239b9b50d1c1e2/artifacts/model.pkl",
-    "decision_tree": "/Users/siddharthaganguli/Desktop/irish/src/model/mlruns/0/models/m-aa9048c735024b6f8768006894860189/artifacts/model.pkl"
+    "logistic": "/Users/siddharthaganguli/Desktop/irish/src/app/irishmodel/model copy.pkl",
+    "decision_tree": "/Users/siddharthaganguli/Desktop/irish/src/app/irishmodel/model copy 2.pkl"
 }
 
 models = {}
